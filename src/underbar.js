@@ -233,13 +233,15 @@
   //outputs: one value
   //assumptions: only takes in array or object
   //edge cases: account for when there's no accumulator passed in
-    var array = collection.slice();
+    var array = collection;
+    if (Array.isArray(collection)) {
+      array = collection.slice();
 
-    if (accumulator === undefined) {
-      accumulator = array[0];
-      array.shift();
+      if (accumulator === undefined) {
+        accumulator = array[0];
+        array.shift();
+      }
     }
-
     _.each(array, function(element) {
       accumulator = iterator(accumulator, element);
     });
@@ -262,11 +264,22 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-  //inputs:
-  //outputs:
-  //assumptions:
-  //edge cases:
-
+  //inputs: object or array 
+  //outputs: boolean
+  //assumptions: always have obj or arr
+  //edge cases: none
+    //use reduce to iterate over each element and then acumulate result 
+    //return added accumulated value to iterated value 
+    // console.log('collection', collection);
+    // return _.reduce(collection, function(acc, element) {
+    //   console.log('logging:', acc, 'el', element);
+    
+  
+    //   if (acc) {
+        
+    //     return !!acc && !!iterator(element);
+    //   }
+    // }, true);
 
   };
 
